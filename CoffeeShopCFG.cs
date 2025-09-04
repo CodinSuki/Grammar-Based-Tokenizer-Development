@@ -24,10 +24,27 @@ class CoffeeShopCFG
     static void Main()
     {
         Console.WriteLine("Enter an order (e.g., Alice orders Coffee, Muffin with Sugar):");
+        
+        PrintSet("Customers", Customers);
+        PrintSet("Drinks", Drinks);
+        PrintSet("Foods", Foods);
+        PrintSet("Modifiers", Modifiers);
+        
+        
         string input = Console.ReadLine();
 
         Console.WriteLine($"\n=== Input: {input} ===");
         RunTokenizer(input);
+    }
+    
+    static void PrintSet(string setName, HashSet<string> set)
+    {
+        Console.WriteLine($"{setName}:");
+        foreach (var item in set)
+        {
+            Console.WriteLine($"  - {item}");
+        }
+        Console.WriteLine();
     }
 
     static void RunTokenizer(string input)
