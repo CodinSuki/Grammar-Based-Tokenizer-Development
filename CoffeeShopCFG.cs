@@ -23,20 +23,11 @@ class CoffeeShopCFG
 
     static void Main()
     {
-        // Test Inputs (at least 5)
-        string[] tests = {
-            "Alice orders Coffee",
-            "Bob orders Latte, Sandwich with Sugar",
-            "Carla orders Espresso, Bagel",
-            "David orders Tea, Muffin with Milk",
-            "Alice orders Coffee, Muffin, Sandwich extra Shot"
-        };
+        Console.WriteLine("Enter an order (e.g., Alice orders Coffee, Muffin with Sugar):");
+        string input = Console.ReadLine();
 
-        foreach (string input in tests)
-        {
-            Console.WriteLine($"\n=== Input: {input} ===");
-            RunTokenizer(input);
-        }
+        Console.WriteLine($"\n=== Input: {input} ===");
+        RunTokenizer(input);
     }
 
     static void RunTokenizer(string input)
@@ -45,11 +36,8 @@ class CoffeeShopCFG
         List<Token> tokens = Tokenize(input);
 
         Console.WriteLine("\nPhase 1: CFG-based classification");
-
-        // Align columns for clean output
-        int maxLen = tokens.Max(t => t.Value.Length);
         foreach (var t in tokens)
-            Console.WriteLine($"{t.Value.PadRight(maxLen)} → {t.Type}");
+            Console.WriteLine($"{t.Value} → {t.Type}");
 
         Console.WriteLine("\nPhase 2: Derivation (leftmost expansion)");
         Derive(tokens);
